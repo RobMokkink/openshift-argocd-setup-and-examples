@@ -11,7 +11,7 @@ oc new-project testseal
 Seal the secret:
 
 ``` 
-kubeseal --controller-namespace=sealed-secrets simple-secrets.yml -o yaml < simple-secret.yml > sealed-simple-secret.yml
+kubeseal --controller-namespace=sealed-secrets -o yaml < simple-secret.yml > sealed-simple-secret.yml
 ```
 
 ## Apply a sealed secret
