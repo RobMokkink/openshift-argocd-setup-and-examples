@@ -24,10 +24,5 @@ oc wait --for=condition=Available -n openshift-gitops deployment/openshift-gitop
 
 echo "OpenShift GitOps is ready!"
 
-
-echo -n "Deploying Sealed Secrets"
-oc apply -k bootstrap/sealed-secrets 
-
-
 echo -n "Deploying the applicationset of applicationsets"
-oc apply -k bootstrap/boostrap-as/overlays/${CLUSTER_NAME}
+oc apply -k bootstrap/bootstrap-as/overlays/${CLUSTER_NAME}
