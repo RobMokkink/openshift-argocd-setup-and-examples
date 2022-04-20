@@ -2,10 +2,8 @@
 This repository contains setup and example for ArgoCD on openshift
 
 
-## Bootstrap folder
-The folder [bootstrap](bootstrap) contains a kustomize etupfor installing the GitOps operator, the overlay folder cluster-admin adjust the permissions for the default instance, so that is has full admin access on the cluster, and you can adjust cluster configuration settings.
-
-Run the script ```./bootstrap.sh```
+## Bootstrap
+Run the script ```./bootstrap.sh```, this will use the folder [bootstrap](boostrap) for the kustomize overlays
 
 ## Test sealed secrets
 Install the kubeseal client.
