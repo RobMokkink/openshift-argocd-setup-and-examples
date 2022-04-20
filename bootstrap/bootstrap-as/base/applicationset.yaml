@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bootstrap-as
+  namespace: openshift-gitops
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/RobMokkink/openshift-argocd-setup-and-examples.git
+        revision: HEAD
+        files:
+          - path: <PATH>
+  template:
+    metadata:
+      name: 'bootstrap-as'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/RobMokkink/openshift-argocd-setup-and-examples.git
+        targetRevision: HEAD
+        path: 'cluster-config/overlays/{{cluster.name}}'
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

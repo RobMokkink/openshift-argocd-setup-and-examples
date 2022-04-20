@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: as-gf-ocp-argocd
+  namespace: openshift-gitops
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/RobMokkink/openshift-argocd-setup-and-examples.git
+      revision: HEAD
+      files:
+      - path: <PATH>
+  template:
+    metadata:
+      name: ocp-{{cluster.name}}-argocd
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/RobMokkink/openshift-argocd-setup-and-examples.git
+        targetRevision: HEAD
+        path: components/operators/gitops/overlays/clusterinstance
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
