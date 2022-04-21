@@ -3,7 +3,7 @@ This repository contains setup and example for ArgoCD on openshift
 
 
 ## Bootstrap
-Run the script ```./bootstrap.sh```, this will use the folder [bootstrap](boostrap) for the kustomize overlays
+Run the script ```./bootstrap.sh```, this will use the folder [bootstrap](bootstrap) for the kustomize overlays
 
 ## Test sealed secrets
 Install the kubeseal client.
