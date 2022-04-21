@@ -6,7 +6,6 @@ bases:
 - ../../base
 resources:
   - cluster-admin-rolebinding.yaml
-  - argocd.yaml
 
 patchesJSON6902:
   - target:

@@ -9,7 +9,7 @@ if [[ -z ${CLUSTER_NAME} ]]; then
     exit 1
 fi
 
-echo "Starting boostrap off cluster"
+echo "Starting boostrap for cluster ${CLUSTER_NAME}"
 echo
 
 echo -n "Deploying GitOps Operator"
@@ -23,6 +23,10 @@ echo
 oc wait --for=condition=Available -n openshift-gitops deployment/openshift-gitops-server
 
 echo "OpenShift GitOps is ready!"
+
+echo "Adjust configuration of ArgoCD Cluster Instance"
+oc apply -k bootstrap/argocd
+
 
 echo -n "Deploying the applicationset of applicationsets"
 oc apply -k bootstrap/bootstrap-as/overlays/${CLUSTER_NAME}
