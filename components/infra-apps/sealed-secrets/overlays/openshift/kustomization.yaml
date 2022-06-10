@@ -5,5 +5,23 @@ bases:
 - ../../base
 resources:
 - namespace.yaml
-- scc.yaml
 - aggregate-clusterrole.yaml
+
+# Comment out and adjust the lines below to use the image from a internal/different image registry
+#images:
+#  - name: docker.io/bitnami/sealed-secrets-controller
+#    newName: <path to image registry for image sealed-secrets-controller>
+#    newTag: <adjust the tag>
+
+patchesJSON6902:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: sealed-secrets-controller
+    patch: |-
+      - op: remove
+        path: /spec/template/spec/containers/0/securityContext/runAsUser
+      - op: remove
+        path: /spec/template/spec/securityContext
+
